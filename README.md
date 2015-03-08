@@ -1,5 +1,5 @@
 # JitterDemo
-Simpler demo showing the jitter / "blur" problem in HaxeFlixel's rendering
+Simpler demo showing the jitter / "blur" problem in HaxeFlixel's and/or OpenFL rendering.
 
 ## Controls
 
