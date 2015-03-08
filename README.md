@@ -1,8 +1,15 @@
 # JitterDemo
 Simpler demo showing the jitter / "blur" problem in HaxeFlixel's rendering
 
-Library Versions
-================
+## Controls
+
+* `Up` key - Increases speed
+* `Down` key - Decreases speed
+
+## Usage
+Different speeds will show the problem. Using `200` will produce a very high and visible jittering.
+
+## Library Versions
 
 * Haxe - 3.1.3
 * Hxcpp - 3.1.68
