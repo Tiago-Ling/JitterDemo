@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="JitterDemoOpenFL" package="com.sample.jitterdemoopenfl" version="1.0.0" company="Company Name" />
+	<app main="Main" path="Export" file="JitterDemoOpenFL" />
+	
+	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="true" />
+	
+	<source path="Source" />
+	
+	<haxelib name="openfl" />
+	
+	<assets path="Assets" rename="assets" exclude="openfl.svg" />
+	<icon path="Assets/openfl.svg" />
+	
+</project>
