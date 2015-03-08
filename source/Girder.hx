@@ -41,6 +41,7 @@ class Girder extends FlxSprite
 			case 1:
 				if (!isOnScreen()) {
 					x = FlxG.camera.scroll.x + FlxG.width * 1.5;
+					status = 0;
 				}
 		}
 	}
