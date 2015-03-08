@@ -7,7 +7,7 @@ Simpler demo showing the jitter / "blur" problem in HaxeFlixel's rendering
 * `Down` key - Decreases speed
 
 ## Usage
-Different speeds will show the problem. Using `200` will produce a very high and visible jittering.
+Different speeds will show the problem in various degrees of intensity. Using `200` will produce a very high and visible jittering.
 
 ## Library Versions
 
