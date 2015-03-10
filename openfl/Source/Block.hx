@@ -22,7 +22,7 @@ class Block extends Bitmap implements Updatable
 	
 	public function init()
 	{
-		placementOffset = width - 139;
+		placementOffset = width - 168;
 		
 		if (Util.isOnScreen(this) && status == 0) {
 			status = 1;
