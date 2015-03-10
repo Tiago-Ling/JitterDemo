@@ -1,13 +1,18 @@
 # JitterDemo
 Simpler demo showing the jitter / "blur" problem in HaxeFlixel's and/or OpenFL rendering.
 
-## Controls
+## Controls 
 
 * `Up` key - Increases speed
 * `Down` key - Decreases speed
+* `Space` key - Toggle usage of delta time (OpenFL only)
+* `Page Up` key - Increases position factor (OpenFL only)
+* `Page Down` key - Decreases position factor (OpenFL only)
 
 ## Usage
-Different speeds will show the problem in various degrees of intensity. Using `200` will produce a very high and visible jittering.
+There is one project using HaxeFlixel and another using OpenFL, both are inside folders with these respective names. The OpenFL project has demos showing the scrolling problem using `Bitmap`, `Tilesheet` and `OpenGLView` classes.
+
+To better visualize the problem images with parallel vertical lines are used. Change `speed`, `useDelta` and `factor` values to see the jittering in different intensities.
 
 ## Library Versions
 
