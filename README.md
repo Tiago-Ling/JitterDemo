@@ -1,5 +1,5 @@
 # JitterDemo
-A set of projects showing jittering in a scrolling image across different Haxe frameworks.
+A set of projects showing jittering in a scrolling image across different Haxe frameworks. The problem occurs in `Cpp` and `Neko` and so far nothing seems to reduce or solve it.
 
 ## Usage
 Currently there is projects for HaxeFlixel, OpenFL, Lime and NME. The OpenFL test has 3 variants using Bitmap, Tilesheet and OpenGLView. All test cases have a FlashDevelop project which can be run without any problem if the libraries below are installed and properly configured in Haxelib.
