@@ -1,17 +1,8 @@
 package;
 
-
-import openfl.Assets;
-import openfl.display.Bitmap;
-import openfl.display.FPS;
-import openfl.display.Sprite;
-import openfl.events.Event;
-import openfl.events.KeyboardEvent;
-import openfl.Lib;
-import openfl.text.TextField;
-import openfl.text.TextFormat;
-import openfl.text.TextFormatAlign;
-import openfl.ui.Keyboard;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.Lib;
 
 /**
  * Scrolling jittering demo
@@ -23,14 +14,18 @@ class Main extends Sprite {
 		
 		super ();
 		
-		addEventListener(Event.ADDED, init);
+		addEventListener(Event.ADDED_TO_STAGE, init);
 	}
 	
 	private function init(e:Event):Void 
 	{
-		removeEventListener(Event.ADDED, init);
+		removeEventListener(Event.ADDED_TO_STAGE, init);
 		
+		#if flash
+		Lib.current.addChild(new BitmapDemo());
+		#else
 		Lib.current.addChild(new Menu());
+		#end
 	}
 	
 

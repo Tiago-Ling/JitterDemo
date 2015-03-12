@@ -1,10 +1,10 @@
 package;
 import flash.display.Bitmap;
-import openfl.Assets;
 import flash.display.Sprite;
 import flash.events.Event;
-import openfl.Lib;
+import flash.Lib;
 
+@:bitmap('Assets/images/openfl.png') class Logo extends flash.display.BitmapData {}
 /**
  * Scrolling jittering demo using Bitmap class
  * @author Tiago Ling Alexandre
@@ -26,7 +26,7 @@ class BitmapDemo extends Sprite
 	{
 		removeEventListener(Event.ADDED, init);
 		
-		bitmap = new Bitmap(Assets.getBitmapData('assets/images/openfl.png'));
+		bitmap = new Bitmap(new Logo(400, 400));
 		addChild(bitmap);
 		
 		bitmap.x = (Lib.current.stage.stageWidth - bitmap.width) / 2;
