@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Simple Image" package="org.openfl.lime.samples.simpleimage" version="1.0.0" company="OpenFL" />
+	<app main="Main" path="Export" file="SimpleImage" />
+	
+	<window background="#FFFFFF" fps="60" />
+	
+	<window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
+	<window fullscreen="false" resizable="true" borderless="false" vsync="true" />
+	
+	<source path="Source" />
+	
+	<haxelib name="lime" />
+	
+	<assets path="Assets" rename="assets" exclude="*.svg" />
+	<icon path="Assets/lime.svg" />
+	
+</project>

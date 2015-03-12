@@ -31,14 +31,14 @@ class Menu extends Sprite
 		title = new TextField();
 		title.y = 100;
 		title.width = stage.stageWidth;
-		title.defaultTextFormat = new TextFormat('Arial', 22, 0xFFFFFF, null, null, null, null, null, TextFormatAlign.CENTER);
+		title.defaultTextFormat = new TextFormat('Arial', 22, 0x000000, null, null, null, null, null, TextFormatAlign.CENTER);
 		title.text = 'OpenFL Jittering demo';
 		addChild(title);
 		
 		label = new TextField();
 		label.y = 250;
 		label.width = stage.stageWidth;
-		label.defaultTextFormat = new TextFormat('Arial', 16, 0xFFFFFF, null, null, null, null, null, TextFormatAlign.CENTER);
+		label.defaultTextFormat = new TextFormat('Arial', 16, 0x000000, null, null, null, null, null, TextFormatAlign.CENTER);
 		label.text = 'Press [E] to run Bitmap demo\n\nPress [R] to run DrawTiles demo\n\nPress [T] to run OpenGLView demo';
 		addChild(label);
 		
