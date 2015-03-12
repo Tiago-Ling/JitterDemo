@@ -6,7 +6,7 @@
 	
 	<source path="Source" />
 	
-	<window fps="100000" fullscreen="false" vsync="false" />
+	<window fps="60" fullscreen="false" vsync="false" />
 	
 	<haxelib name="nme" />
 	<haxelib name="actuate" />

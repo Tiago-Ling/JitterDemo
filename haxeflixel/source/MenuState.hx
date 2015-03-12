@@ -7,16 +7,15 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import openfl.Assets;
 
 /**
  * A FlxState which can be used for the game's menu.
  */
 class MenuState extends FlxState
 {
-	public static var SPEED:Float = 500;
-	
-	var player:FlxSprite;
-	var label:FlxText;
+	var speed:Float = 300;
+	var bitmap:FlxSprite;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -28,46 +27,10 @@ class MenuState extends FlxState
 		FlxG.mouse.visible = false;
 		FlxG.camera.antialiasing = true;
 		FlxG.camera.pixelPerfectRender = false;
+		this.bgColor = 0xFFFFFFFF;
 		
-		//Arbitrary bounds (super big width)
-		FlxG.worldBounds.set(0, 0, 128000, 720);
-		
-		var girderA = new Girder(FlxG.width * 0.5, -180);
-		add(girderA);
-		
-		var girderB = new Girder(FlxG.width * 1.5, -180);
-		add(girderB);
-		
-		var blockA = new Block(0, 300, this);
-		var blockB = new Block(1600, 300, this);
-		blockA.otherBlock = blockB;
-		blockB.otherBlock = blockA;
-		blockA.init();
-		blockB.init();
-		
-		add(blockB);
-		add(blockA);
-		
-		player = new FlxSprite(128, 300);
-		player.makeGraphic(64, 128, FlxColor.PURPLE);
-		player.velocity.set(SPEED, 0);
-		add(player);
-		
-		label = new FlxText(10, 10, 400, 'Speed : ${player.velocity.x}', 16);
-		label.setBorderStyle(FlxTextBorderStyle.OUTLINE, 0x333333, 2);
-		label.scrollFactor.set(0, 0);
-		label.antialiasing = Reg.sprAntialising;
-		label.pixelPerfectPosition = Reg.sprPixelPerfectPosition;
-		label.pixelPerfectRender = Reg.sprPixelPerfectRender;
-		add(label);
-		
-		FlxG.camera.follow(player, null, null, 1);
-		FlxG.camera.deadzone.x = -128;
-		FlxG.camera.deadzone.y = 360;
-		FlxG.camera.deadzone.width = 300;
-		FlxG.camera.deadzone.height = 120;
-		FlxG.camera.minScrollY = -92;
-		FlxG.camera.maxScrollY = 532;
+		bitmap = new FlxSprite(FlxG.width / 2 - 50, FlxG.height / 2 - 50, Assets.getBitmapData('assets/images/logo.png'));
+		add(bitmap);
 	}
 	
 	/**
@@ -86,19 +49,8 @@ class MenuState extends FlxState
 	{
 		super.update(elapsed);
 		
-		handleControls();
-		
-		label.text = 'Speed : ${player.velocity.x}';
-	}
-	
-	function handleControls()
-	{
-		if (FlxG.keys.justPressed.DOWN && player.velocity.x > 0) {
-			player.velocity.x -= 50;
-		}
-		
-		if (FlxG.keys.justPressed.UP) {
-			player.velocity.x += 50;
-		}
+		bitmap.x -= elapsed * speed;
+		if (bitmap.x + bitmap.width < 0)
+			bitmap.x = FlxG.width;
 	}
 }

@@ -14,13 +14,15 @@ class Main extends Sprite {
 		
 		super ();
 		
+		/**
+		 * 
+		 * Tested with NME 5.2.43
+		 * Get it here: http://nmehost.com/releases/nme/nme-5.2.43.zip 
+		 * 
+		 */
+		
 		bitmap = new Bitmap (Assets.getBitmapData ("assets/nme.png"));
 		addChild (bitmap);
-		
-/*		bitmap.x = Lib.current.stage.stageWidth - bitmap.width;
-		bitmap.y = Lib.current.stage.stageHeight - bitmap.height;
-		
-		motion.Actuate.tween(bitmap, 5, { x:0 } ).ease(motion.easing.Linear.easeNone).repeat().reflect();*/
 		
 		bitmap.x = (Lib.current.stage.stageWidth - bitmap.width) / 2;
 		bitmap.y = (Lib.current.stage.stageHeight - bitmap.height) / 2;
