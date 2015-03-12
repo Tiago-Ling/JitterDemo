@@ -43,17 +43,8 @@ class OpenGLViewDemo extends Sprite {
 	var positionX:Float;
 	var positionY:Float;
 	
-	var useDelta:Bool = true;
-	var speed:Float = 300;
-	//Factor is used if 'useDelta' is false
-	var factor:Float = 0.02;
-	
-	var label:TextField;
-	
-	var ticks:Int;
-	var elapsedMS:Int;
-	var total:Int;
-	var elapsedSecs:Float;
+	var speed:Float = 300.0;
+	var lastTicks:Float = 0.0;
 	
 	public function new () {
 		
@@ -66,12 +57,7 @@ class OpenGLViewDemo extends Sprite {
 	{
 		removeEventListener(Event.ADDED, init);
 		
-		ticks = 0;
-		elapsedMS = 0;
-		elapsedSecs = 0;
-		total = Lib.getTimer();
-		
-		bitmapData = Assets.getBitmapData ("assets/images/sample_image.png");
+		bitmapData = Assets.getBitmapData ("assets/images/openfl.png");
 		
 		if (OpenGLView.isSupported) {
 			
@@ -87,54 +73,7 @@ class OpenGLViewDemo extends Sprite {
 			
 			view.render = renderView;
 			addChild (view);
-			
-			label = new TextField();
-			label.x = label.y = 10;
-			label.width = 400;
-			label.defaultTextFormat = new TextFormat('Arial', 16, 0xFFFFFF);
-			label.text = 'Speed : $speed | useDelta : $useDelta | factor : $factor';
-			addChild(label);
 		
-			Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, handleControls);
-			
-			addChild(new FPS(10, 50, 0xFFFFFF));
-		}
-	}
-	
-	private function handleControls(e:KeyboardEvent):Void 
-	{
-		switch (e.keyCode) {
-			case Keyboard.UP:
-				speed += 50;
-				label.text = 'Speed : $speed | useDelta : $useDelta | factor : $factor';
-			case Keyboard.DOWN:
-				if (speed > 0)
-					speed -= 50;
-				label.text = 'Speed : $speed | useDelta : $useDelta | factor : $factor';
-			case Keyboard.SPACE:
-				useDelta = !useDelta;
-				label.text = 'Speed : $speed | useDelta : $useDelta | factor : $factor';
-			case Keyboard.PAGE_UP:
-				factor += 0.01;
-				label.text = 'Speed : $speed | useDelta : $useDelta | factor : $factor';
-			case Keyboard.PAGE_DOWN:
-				factor -= 0.01;
-				label.text = 'Speed : $speed | useDelta : $useDelta | factor : $factor';
-			case Keyboard.ESCAPE:
-				Lib.current.removeChild(this);
-				Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, handleControls);
-				label = null;
-				bitmapData = null;
-				imageUniform = null;
-				modelViewMatrixUniform = null;
-				projectionMatrixUniform = null;
-				shaderProgram = null;
-				texCoordBuffer = null;
-				texture = null;
-				view.render = null;
-				view = null;
-				vertexBuffer = null;
-				Lib.current.addChild(new Menu());
 		}
 	}
 	
@@ -266,22 +205,15 @@ class OpenGLViewDemo extends Sprite {
 	
 	private function renderView (rect:Rectangle):Void {
 		
-		if (useDelta) {
-			ticks = Lib.getTimer();
-			elapsedMS = ticks - total;
-			elapsedSecs = elapsedMS / 1000;
-			
-			positionX -= elapsedSecs * speed;
-			if (positionX + bitmapData.width < 0)
-				positionX = stage.stageWidth;
-			
-			total = ticks;
-		} else {	
-			positionX -= factor * speed;
-			if (positionX + bitmapData.width < 0)
-				positionX = stage.stageWidth;
-		}
-			
+        var ticks:Float = haxe.Timer.stamp() * 1000.0;
+        var delta:Float = (ticks - lastTicks); // Float delta
+        
+		positionX -= (delta / 1000) * speed;
+		if (positionX + bitmapData.width < 0)
+			positionX = stage.stageWidth;
+        
+        lastTicks = ticks;
+		
 		GL.viewport (Std.int (rect.x), Std.int (rect.y), Std.int (rect.width), Std.int (rect.height));
 		
 		GL.clearColor (0, 0, 0, 1.0);

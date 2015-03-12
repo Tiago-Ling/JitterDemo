@@ -15,7 +15,6 @@ import openfl.ui.Keyboard;
 class Menu extends Sprite
 {
 	var label:TextField;
-	var instructions:TextField;
 	var title:TextField;
 	
 	public function new() 
@@ -43,14 +42,6 @@ class Menu extends Sprite
 		label.text = 'Press [E] to run Bitmap demo\n\nPress [R] to run DrawTiles demo\n\nPress [T] to run OpenGLView demo';
 		addChild(label);
 		
-		instructions = new TextField();
-		instructions.y = 400;
-		instructions.width = stage.stageWidth;
-		instructions.height = 400;
-		instructions.defaultTextFormat = new TextFormat('Arial', 16, 0xFFFFFF, null, null, null, null, null, TextFormatAlign.CENTER);
-		instructions.text = 'All demos:\n[UP] - Increase speed\n[DOWN] - Decrease speed\n[SPACE] - Toggle delta time usage\n[PG UP] - Increase position factor\n[PG DOWN] - Decrease position factor\n[ESC] - Return to this menu';
-		addChild(instructions);
-		
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, handleControls);
 	}
 	
@@ -62,21 +53,18 @@ class Menu extends Sprite
 				Lib.current.removeChild(this);
 				title = null;
 				label = null;
-				instructions = null;
 				Lib.current.addChild(new BitmapDemo());
 			case Keyboard.R:
 				Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, handleControls);
 				Lib.current.removeChild(this);
 				title = null;
 				label = null;
-				instructions = null;
 				Lib.current.addChild(new DrawTilesDemo());
 			case Keyboard.T:
 				Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, handleControls);
 				Lib.current.removeChild(this);
 				title = null;
 				label = null;
-				instructions = null;
 				Lib.current.addChild(new OpenGLViewDemo());
 		}
 	}
