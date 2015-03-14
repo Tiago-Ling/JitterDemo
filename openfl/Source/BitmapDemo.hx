@@ -14,6 +14,7 @@ class BitmapDemo extends Sprite
 	var bitmap:Bitmap;
 	var speed:Float = 300.0;
 	var lastTicks:Float = 0.0;
+	var posX:Float;
 	
 	public function new() 
 	{
@@ -32,6 +33,8 @@ class BitmapDemo extends Sprite
 		bitmap.x = (Lib.current.stage.stageWidth - bitmap.width) / 2;
 		bitmap.y = (Lib.current.stage.stageHeight - bitmap.height) / 2;
 		
+		posX = bitmap.x;
+		
 		addEventListener(Event.ENTER_FRAME, update);
 	}
 	
@@ -39,11 +42,14 @@ class BitmapDemo extends Sprite
 	{
         var ticks:Float = haxe.Timer.stamp() * 1000.0;
         var delta:Float = (ticks - lastTicks); // Float delta
+			
+		if (bitmap.x + bitmap.width > 0)
+			posX -= (delta / 1000) * speed;
+		else
+			posX = stage.stageWidth;
         
-		bitmap.x -= (delta / 1000) * speed;
-		if (bitmap.x + bitmap.width < 0)
-			bitmap.x = stage.stageWidth;
-        
+		bitmap.x = Std.int(posX);
+		
         lastTicks = ticks;
 	}
 }

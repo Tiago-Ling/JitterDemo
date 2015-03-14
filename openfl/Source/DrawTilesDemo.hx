@@ -58,15 +58,17 @@ class DrawTilesDemo extends Sprite
         var ticks:Float = haxe.Timer.stamp() * 1000.0;
         var delta:Float = (ticks - lastTicks); // Float delta
         
-		position.x -= (delta / 1000) * speed;
-		if (position.x + tileRect.width < 0)
+		if (position.x + tileRect.width > 0)
+			position.x -= (delta / 1000) * speed;
+		else
 			position.x = stage.stageWidth;
-        
-        lastTicks = ticks;
 		
-		tiles[0] = position.x;
+		tiles[0] = Std.int(position.x);
+		
 		container.graphics.clear();
 		ts.drawTiles(container.graphics, tiles, true, Tilesheet.TILE_TRANS_2x2);
+		
+		lastTicks = ticks;
 	}
 	
 }
